@@ -4,6 +4,13 @@ end
 
 def iterate(matrix, col, row)
   debug(matrix[col][row])
+
+  # next row
+  if matrix[col][row + 1].nil? == false
+    iterate(matrix, col, row + 1)
+  elsif matrix[col + 1].nil? == false
+    iterate(matrix, col + 1, 0)
+  end
 end
 
 matrix = [
@@ -15,4 +22,4 @@ matrix = [
     [21, 22, 23, 24, 25],
 ]
 
-iterate(matrix, 1, 0)
+iterate(matrix, 0, 0)
