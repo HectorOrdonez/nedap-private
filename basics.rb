@@ -19,34 +19,40 @@ def play_game
     current_position += roll
 
     # obstacles
-    if current_position == 8
+    case current_position
+    when 8
       debug("Oops! Snake in #{current_position}, you go to 3")
       current_position = 3
-    elsif current_position == 13
+    when 13
       debug("Oops! Snake in #{current_position}, you go to 8")
       current_position = 8
-    elsif current_position == 20
+    when 20
       debug("Oops! Snake in #{current_position}, you go to 11")
       current_position = 11
-    elsif current_position == 24
+    when 24
       debug("Oops! Snake in #{current_position}, you go to 17")
       current_position = 17
-      # helpers
-    elsif current_position == 1
-      debug("Nice! Ladder in #{current_position}, you go to 9")
+      # ladders
+    when 1
+      debug("Oops! Snake in #{current_position}, you go to 9")
       current_position = 9
-    elsif current_position == 3
+    when 8
+      debug("Oops! Snake in #{current_position}, you go to 3")
+      current_position = 3
+    when current_position == 3
       debug("Nice! Ladder in #{current_position}, you go to 7")
       current_position = 7
-    elsif current_position == 6
+    when current_position == 6
       debug("Nice! Ladder in #{current_position}, you go to 17")
       current_position = 17
-    elsif current_position == 12
+    when current_position == 12
       debug("Nice! Ladder in #{current_position}, you go to 18")
       current_position = 18
-    elsif current_position == 19
+    when current_position == 19
       debug("Nice! Ladder in #{current_position}, you go to 23")
       current_position = 23
+    else
+      # Nothing special here
     end
 
     debug("Now position is #{current_position}")
