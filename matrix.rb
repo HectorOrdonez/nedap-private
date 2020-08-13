@@ -1,17 +1,37 @@
 def debug(msg)
-  # puts msg
+  puts msg
 end
 
-def iterate(matrix, col, row, numbers_collected)
-  numbers_collected.push(matrix[col][row])
+# direction: [r]ight, [d]own, [l]eft, [u]p
+def iterate(matrix, col, row, direction, numbers_collected)
   debug(matrix[col][row])
 
-  # next row
-  if matrix[col][row + 1].nil? == false
-    iterate(matrix, col, row + 1, numbers_collected)
-  elsif matrix[col + 1].nil? == false
-    iterate(matrix, col + 1, 0, numbers_collected)
+  numbers_collected.push(matrix[col][row])
+
+  case direction
+  when 'r'
+    if matrix[col][row + 1].nil? == false
+      # We go right, so we keep the col
+      iterate(matrix, col, row + 1, direction, numbers_collected)
+    elsif matrix[col + 1].nil? == false
+      # We go down, so we keep the row
+      if matrix[col + 1][row].nil?
+        debug("col #{col} and row #{row} is nil")
+      else
+        iterate(matrix, col + 1, row, 'd', numbers_collected)
+      end
+    end
+  when 'd'
+    debug('Going down down down')
+  else
+    puts "This should not happen"
   end
+
+  # if matrix[col][row + 1].nil? == false
+  #   iterate(matrix, col, row + 1, direction, numbers_collected)
+  # elsif matrix[col + 1].nil? == false
+  #   iterate(matrix, col + 1, 0, direction, numbers_collected)
+  # end
 
   numbers_collected
 end
@@ -25,7 +45,7 @@ matrix = [
     [21, 22, 23, 24, 25],
 ]
 
-numbers_collected = iterate(matrix, 0, 0, [])
+numbers_collected = iterate(matrix, 0, 0, 'r', [])
 
 # Output the result
 numbers_collected.each do |n|
