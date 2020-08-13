@@ -1,3 +1,5 @@
+roll_sequence = []
+
 current_position = 1
 target_position = 25
 
@@ -6,6 +8,7 @@ while current_position < target_position
   # throwing dice
   roll = rand(1..6)
   puts "throw : #{roll}"
+  roll_sequence.push(roll)
 
   # adding to current position
   current_position += roll
@@ -43,3 +46,5 @@ while current_position < target_position
 
   puts "Now position is #{current_position}"
 end
+
+puts "Finished in #{roll_sequence.length}, with the sequence: #{roll_sequence.join('-')}"
